@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
-root 'application#hello'
+  get 'welcome/index'
+
+  resources :checkouts
+
+  root 'welcome#index'
 
 end
