@@ -13,8 +13,8 @@
                 <label for="expiration-date">Expiration Date</label>
                 <div id="expiration-date" class='hosted-field'></div>
 
-                <label for="postal-code">Postal Code</label>
-                <div id="postal-code" class='hosted-field'></div>
+                <label for="postal_code">Postal Code</label>
+                <input type='number' name='postal_code' id="postal_code" class='hosted-field'><br>
 
                 <label for='first_name'>First Name</label><br>
                 <input type='text' name='first_name' class='hosted-field' id='first_name'><br>
@@ -108,11 +108,11 @@
             expirationDate: {
               selector: '#expiration-date',
               placeholder: '10/2029'
-            },
-            postalCode: {
-              selector: '#postal-code',
-              placeholder: 'Zip Code'
             }
+//            postalCode: {
+//              selector: '#postal-code',
+//              placeholder: 'Zip Code'
+//            }
           }
         }, function (hostedFieldsErr, hostedFieldsInstance) {
           if (hostedFieldsErr) {
@@ -123,6 +123,7 @@
           submit.removeAttribute('disabled');
           document.querySelector('#first_name').placeholder = 'First Name';
           document.querySelector('#email').placeholder = 'Email';
+          document.querySelector('#postal_code').placeholder = 'Postal Code';
 
           form.addEventListener('submit', function (event) {
             event.preventDefault();

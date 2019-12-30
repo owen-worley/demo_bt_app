@@ -19,8 +19,6 @@ label {
   color:blue;
 }
 
-
-
 /* Meta Styling */
 
 @font-face {
@@ -41,21 +39,17 @@ body {
 }
 
 #checkout {
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
 }
 
 #main_wrapper {
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 #main_container {
@@ -66,9 +60,7 @@ body {
   width: 50%;
   height: 750px;
   border: 2px solid black;
-
 }
-
 
 #title {
   height: 17%;
@@ -82,10 +74,7 @@ body {
   align-items: center;
   font-family: btMono;
   margin-bottom: 20px;
-
-
 }
-
 
 #image_cat {
   margin-top: 10px;

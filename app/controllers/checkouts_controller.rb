@@ -2,12 +2,23 @@ class CheckoutsController < ApplicationController
   require 'rubygems'
   require 'braintree'
 
-  def transaction(gateway, amount, customer_id, sfs_bool)
+  def index
+    @checkouts = Checkout.all
+  end
+
+  def show
+    @checkout = Checkout.find(params[:id])
+  end
+
+  def transaction(gateway, amount, customer_id, postal_code, sfs_bool)
     gateway.transaction.sale(
       amount: amount,
       customer_id: customer_id,
       options: {
         submit_for_settlement: sfs_bool
+      },
+      billing: {
+        postal_code: postal_code
       }
     )
   end
@@ -31,8 +42,11 @@ class CheckoutsController < ApplicationController
     if cardtype == "Visa"
       customer_result = vault(gateway, params[:payment_method_nonce], params[:first_name], params[:email])
       customer_id = customer_result.customer.id
-      transaction_result = transaction(gateway, '1000.00', customer_id, true)
+      transaction_result = transaction(gateway, '1000.00', customer_id, params[:postal_code], true)
       @message = transaction_result.success?
+#      @checkout = Checkout.new(params[:email], params[:first_name], customer_id, params[:postal_code], '1000.00', params[:card_type])
+      @checkout = Checkout.new(params[:checkout])
+      @checkout.save
     else
       @message = "Irrelevant, Not a Visa"
     end
