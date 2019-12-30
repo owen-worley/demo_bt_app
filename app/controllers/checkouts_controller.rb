@@ -44,9 +44,15 @@ class CheckoutsController < ApplicationController
       customer_id = customer_result.customer.id
       transaction_result = transaction(gateway, '1000.00', customer_id, params[:postal_code], true)
       @message = transaction_result.success?
-#      @checkout = Checkout.new(params[:email], params[:first_name], customer_id, params[:postal_code], '1000.00', params[:card_type])
-      @checkout = Checkout.new(params[:checkout])
+      @checkout = Checkout.new
+      @checkout.email = params[:email]
+      @checkout.first_name = params[:first_name]
+      @checkout.customer_id = customer_id
+      @checkout.postal_code = params[:postal_code]
+      @checkout.amount = '1000.00'
+      @checkout.card_type = params[:card_type]
       @checkout.save
+#      redirect_to checkout_path(@checkout)
     else
       @message = "Irrelevant, Not a Visa"
     end
