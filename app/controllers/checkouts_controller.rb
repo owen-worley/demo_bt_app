@@ -10,6 +10,17 @@ class CheckoutsController < ApplicationController
     @checkout = Checkout.find(params[:id])
   end
 
+  def total_sales
+    total = 0
+    @checkouts.each do |checkout|
+      if checkout.amount.is_a?(Numeric)
+        total += checkout.amount
+      end
+    end
+    return total
+  end
+  helper_method :total_sales
+
   def transaction(gateway, amount, customer_id, postal_code, sfs_bool)
     gateway.transaction.sale(
       amount: amount,

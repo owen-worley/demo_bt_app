@@ -1,3 +1,9 @@
+<h1>Summary Statistics</h1>
+
+<h2>Total Sales: <%= @checkouts.sum("amount") %></h2>
+
+<h2>Average Sale: <%= @checkouts.average("amount") %></h2>
+
 <h1>All Checkouts</h1>
 
 <ul id="checkouts">
